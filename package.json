@@ -13,6 +13,8 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.ts",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
   }
 }
