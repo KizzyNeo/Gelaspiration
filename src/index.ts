@@ -51,7 +51,7 @@ mongoose.connect(process.env.MONGO_URI as string)
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.log(err));
 
-app.post("/api/register", async (req, res) => {
+app.post("https://gelaspiration.onrender.com/api/register", async (req, res) => {
     const { name, email, gender, segment } = req.body;
 
     if (!name || !email || !gender || !segment) {
