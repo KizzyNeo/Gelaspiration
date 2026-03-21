@@ -5,6 +5,7 @@
         "moduleResolution": "node",
         "rootDir": "./src",
         "outDir": "./dist",
+        "lib": ["ES2020", "DOM"],
         "esModuleInterop": true,
         "strict": true,
         "skipLibCheck": true
