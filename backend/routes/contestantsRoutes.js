@@ -1,19 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
+const upload = require("../middleware/upload");
+const cloudinary = require("../config/cloudinary");
+// const multer = require("multer");
 const Contestant = require("../models/Contestant");
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "uploads/");
-    },
-    filename: function (req, file, cb) {
-        const cleanName = file.originalname.replace(/\s+/g, "-");
-        cb(null, Date.now() + "-" + cleanName);
-    }
-});
+const bufferToDataURI = (file) => {
+    return `data:${file.mimetype};base64,${file.buffer.toString("base64")}`;
+};
 
-const upload = multer({ storage });
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, "uploads/");
+//     },
+//     filename: function (req, file, cb) {
+//         const cleanName = file.originalname.replace(/\s+/g, "-");
+//         cb(null, Date.now() + "-" + cleanName);
+//     }
+// });
+
+// const upload = multer({ storage });
 
 router.post("/", upload.single("photo"),
 async (req, res) => {
@@ -21,19 +27,27 @@ async (req, res) => {
         console.log("BODY:", req.body);
         console.log("FILE:", req.file);
 
-        const { name, phone, gender, location } = req.body;
+        let imageUrl = "";
+        if (req.file) {
+            const file = bufferToDataURI(req.file);
+
+            const uploaded = await cloudinary.uploader.upload(file, { folder: "contestants" });
+
+            imageUrl = uploaded.secure_url;
+        }
+        // const { name, phone, gender, location } = req.body;
 
         const newContestant = new Contestant({
-            name,
-            phone,
-            gender,
-            location,
-            photo: req.file ? req.file.filename : null
+            name: req.body.name,
+            phone: req.body.phone,
+            gender: req.body.gender,
+            location: req.body.location,
+            photo: imageUrl
         });
 
-        const saved = await newContestant.save();
+        await newContestant.save();
 
-        res.json(saved);
+        res.json(newContestant);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
