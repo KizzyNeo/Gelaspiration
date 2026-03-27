@@ -52,7 +52,7 @@ function Admin() {
                     {filtered.map((c) => (
                         <tr key={c._id}>
                             <td>{c.contestantId}</td>
-                            <td><img src={`http://localhost:5000/uploads/${encodeURIComponent(c.photo)}`}
+                            <td><img src={c.photo}
                             alt="passport" 
                             width="60"
                             height="60"
