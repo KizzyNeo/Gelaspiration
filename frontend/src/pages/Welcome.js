@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function Welcome() {
     const navigate = useNavigate();
@@ -20,6 +21,21 @@ function Welcome() {
 
     return (
         <div>
+            <Helmet>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <title>SBC 7.0 | Gelaspiration</title>
+                <meta name="description" content="Sing Better Competition (SBC) 7.0. A super competition for 
+                amazing talents." />
+                <meta name="keywords" content="sing, competition, sbc, music, talent, nigeria" />
+                <meta name="author" content="Gelaspiration" />
+                <meta property="og:title" content="Sing Better Competition (SBC) 7.0" />
+                <meta property="og:description" content="Join now!" />
+                <meta property="og:type" content="website" />
+                <meta property="og:image" content="https://gelaspiration.com/src/assets/2.png" />
+                <meta property="og:url" content="https://gelaspiration.com" />
+                <meta name="twitter:card" content="summary_large_image" />
+            </Helmet>
             <div id="sbc_header">
                 <img src={require("../assets/2.png")} alt="gelaspiration_logo" id="logo" />
             </div>
@@ -209,7 +225,7 @@ function Welcome() {
                 </button>
                 <h4 id="contact">
                     For more enquiries and sponsorship contact us via:
-                    <a href="https://wa.me/+2347033471680"><img src={require("../assets/whatsapp.png")} id="whatsapp" alt="whatsapp_icon" /> />
+                    <img src={require("../assets/whatsapp.png")} id="whatsapp" alt="whatsapp_icon" />
                     || <a href="tel:+2347033471680">+2347033471680</a>
                     </h4>
             </div>
