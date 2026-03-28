@@ -30,9 +30,9 @@ function Register() {
         data.append("photo", formData.photo);
 
         try {
-            const res = await axios.post("http://localhost:5000/api/contestants", data);
+            const res = await axios.post("https://gelaspiration-backend.onrender.com/api/contestants", data);
             console.log(res.data);
-            alert("Registration Successful! ID: " + res.data.contestantId);
+            alert("Registration Successful!");
         } catch (err) {
             console.error(err);
         }
