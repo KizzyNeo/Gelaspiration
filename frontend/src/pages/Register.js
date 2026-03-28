@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -41,6 +42,21 @@ function Register() {
 
     return (
         <div className="center arrange">
+            <Helmet>
+                            <meta charset="utf-8" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1" />
+                            <title>Register | SBC 7.0</title>
+                            <meta name="description" content="Register for Sing Better Competition (SBC) 7.0. A super competition for 
+                            amazing talents." />
+                            <meta name="keywords" content="register, join, sing, competition, sbc, music, talent, nigeria" />
+                            <meta name="author" content="Gelaspiration" />
+                            <meta property="og:title" content="Sing Better Competition (SBC) 7.0" />
+                            <meta property="og:description" content="Join now!" />
+                            <meta property="og:type" content="website" />
+                            <meta property="og:image" content="https://gelaspiration.com/src/assets/2.png" />
+                            <meta property="og:url" content="https://gelaspiration.com" />
+                            <meta name="twitter:card" content="summary_large_image" />
+                        </Helmet>
             <h2 id="reg">Register Contestant</h2>
             <form onSubmit={handleSubmit} className="form">
                 <input type="text" name="name" placeholder="Full Name" onChange={handleChange} required />
